@@ -1,0 +1,24 @@
+.maNav {
+  text-align: center;
+  font-family: "policeStar", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  color: #fbfb05;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.nav-link:hover {
+  color: #fbfb05 !important;
+}
+
+.logoNav {
+  height: 100px;
+}
+
+.containerNav {
+  display: flex;
+  align-items: center;
+}

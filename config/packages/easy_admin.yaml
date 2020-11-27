@@ -1,0 +1,95 @@
+easy_admin:
+
+  site_name: 'Admin du yoda club'
+
+  user:
+    display_name: true
+
+  design:
+    menu:
+      - { entity: 'User', label: 'Joueurs', icon: 'user' }
+      - { entity: 'News', label: 'News', icon: 'newspaper' }
+      - { entity: 'Tournois', label: 'Tournois', icon: 'gamepad' }
+
+  formats:
+    datetime: 'd/m/Y à H:i'
+
+
+  entities:
+    User:
+      class: App\Entity\User
+
+      list:
+        fields:
+          - { property: 'firstName', label: 'Prénom' }
+          - { property: 'lastName', label: 'Nom' }
+          - email
+          - validation
+          - { property: 'phone', label: 'Tél.' }
+          - points
+          - tournois
+
+      form:
+        fields:
+          - { property: 'firstName', label: 'Prénom' }
+          - { property: 'lastName', label: 'Nom' }
+          - email
+          - validation
+          - { property: 'phone', label: 'Tél.' }
+          - points
+          - tournois
+
+    News:
+      class: App\Entity\News
+
+      list:
+        fields:
+          - { property: 'title', label: 'Titre' }
+          - { property: 'image', label: 'Image', type: 'image', base_path: '%app.path.images%' } 
+          - { property: 'content', label: 'Contenu' }
+      
+      form:
+        fields:
+          - { property: 'title', label: 'Titre' }
+          - { property: 'imageFile', type: 'vich_image', label: 'Image' }
+          - { property: 'content', label: 'Contenu' }
+
+    Tournois:
+      class: App\Entity\Tournois
+
+      list:
+        fields:
+          - { property: 'name', label: 'Nom' }
+          - date
+          - lieu
+          - { property: 'users', label: 'Nb. de joueurs' }
+
+      form:
+        fields:
+          - { property: 'name', label: 'Nom' }
+          - date
+          - lieu
+          - { property: 'users', label: 'Joueurs' }
+
+
+      # list:
+      #   fields:
+      #     - { property: 'name', label: 'Nom (facultatif)' }
+      #     - date
+      #     - lieu
+
+      # form:
+      #   fields:
+      #     - { property: 'name', label: 'Nom (facultatif)' }
+      #     - date 
+      #     - lieu
+          
+
+
+
+
+#    entities:
+#        # List the entity class name you want to manage
+#        - App\Entity\Product
+#        - App\Entity\Category
+#        - App\Entity\User

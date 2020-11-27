@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+<div class="container">
+
+    <div class="card border-primary mb-3">
+  <div class="card-header">Validation de participation au tournois</div>
+  <div class="card-body">
+    <h4 class="card-title">Date du tournois sélectionné: {{ tournoi.date | date('d/m/Y') }} </h4>
+    <p class="card-text">Clique pour valider la participation au tournois. En cas d'annulation merci d'envoyer un mail via la partie contact de la page principale.</p>
+  </div>
+</div>
+
+{% if form is defined %}
+
+    {{ form_start(form) }}
+
+        {{ form_widget(form.Participer, {attr: {'class': 'btn btn-success' }}) }}
+
+    {{ form_end(form) }} 
+{% else %}
+  <a href="{{ path('home') }}" class="btn btn-info">{{ message }}</a>
+
+{% endif %}
+
+
+
+
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,265 @@
+@font-face {
+  font-family: "policeStar";
+  src: url(../../public/font/Starjout.ttf) format("truetype");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image: url("../../public/img/cosmos2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  margin-bottom: 0 !important;
+  // color: white;
+}
+
+label {
+  color: white;
+}
+
+
+
+.containerHome {
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.textHome {
+  font-size: 3em;
+  text-align: center;
+  color: #fbfb05;
+  font-family: "policeStar", sans-serif;
+}
+
+.titleHeadContainer {
+  font-size: 3em;
+  text-align: center;
+  color: #fbfb05;
+  font-family: "policeStar", sans-serif;
+}
+
+.textPresentation {
+  color: black;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 100%; */
+  justify-content: center;
+  align-items: center;
+  /* height: 80%; */
+}
+
+.images img {
+  padding-top: 2em;
+}
+
+.image1 {
+  height: 400px;
+  border-radius: 2px;
+}
+
+.image2 {
+  border-radius: 2px;
+  height: 300px;
+  width: auto;
+}
+
+.imgArticle {
+  height: 100px;
+  width: 100px;
+}
+
+/* Partie tournoi */
+
+.backgroundCoupe {
+  // height: 100vh;
+  background-image: url("../../public/img/coupe.jpg");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+  background-attachment: fixed;
+}
+
+.containerTournoi {
+  color: white;
+  height: 100vh;
+}
+
+/* classement */
+
+.containerClassement {
+  color: white;
+}
+
+/* contact */
+
+.champType {
+  background-color: rgba(255, 255, 255, 0.109);
+  border: none;
+  border-bottom: #fbfb05 solid 2px;
+  resize: none;
+  color: #fbfb05;
+  font-weight: bolder;
+}
+
+.champType:focus {
+  background-color: transparent;
+  border: none;
+  border-bottom: #fbfb05 solid 2px;
+  color: white;
+}
+
+.footer {
+  height: 15vh;
+  // background-image: url("../../public/img/indoor.jpg");
+  background-color: black;
+}
+
+.backTop {
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
+  font-size: 3em;
+  transition: 300ms;
+}
+
+.backTop:hover {
+  transform: scale(1.2);
+}
+
+.rowNews {
+  position: relative;
+}
+
+.news {
+  background-color: rgba(255, 255, 255, 0.585);
+  height: 50vh;
+  margin: auto;
+  display: none;
+  border-radius: 5px;
+}
+
+.imgCard {
+  height: 200px;
+  width: auto;
+  text-align: center;
+}
+
+.titreNews {
+  text-transform: uppercase;
+}
+
+.textNews {
+  color: black !important;
+}
+
+.flecheGaucheSlider {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  font-size: 3em;
+  color: #fbfb05;
+  z-index: 100;
+  transition: all 200ms;
+}
+
+.flecheGaucheSlider:hover {
+  transform: scale(1.5);
+}
+
+.flecheDroiteSlider:hover {
+  transform: scale(1.5);
+}
+
+.flecheDroiteSlider {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  font-size: 3em;
+  color: #fbfb05;
+  z-index: 100;
+  transition: all 200ms;
+}
+
+.flecheGaucheSlider:active {
+  transform: scale(1);
+}
+
+.flecheDroiteSlider:active {
+  transform: scale(1);
+}
+
+.visible {
+  display: block;
+}
+
+.contenuCard {
+  height: 50vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.policeStarWars {
+  color: #fbfb05;
+  font-family: "policeStar", sans-serif;
+}
+
+.btn {
+  border-radius: 0 !important;
+}
+
+.containerPresentation {
+  background-color: rgba(255, 255, 255, 0.755);
+  color: black;
+}
+
+.imgSvg {
+  font-size: 2em;
+  color: black;
+}
+
+.containerContact {
+  background-image: url("../../public/img/bgContact.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.884);
+}
+
+.imgFooter {
+  max-height: 15vh;
+  // max-width: 50%;
+}
+
+.btnTournois {
+  width: 100px;
+}
+
+.selfEnd {
+  align-self: flex-end;
+}
+
+.messageClassement {
+  display: table;
+  position: absolute;
+  right: 15%;
+}
+
+
+li {
+  list-style-type: none;
+  color: red;
+  font-weight: bold;
+}
