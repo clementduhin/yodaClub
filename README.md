@@ -12,4 +12,8 @@
 
 6- php bin/console doctrine:fixtures:load
 
-7- Connect into your localhost with the route "/admin" email: mailAdmin@gmail.com password: admin to log in the admin project
+7- yarn install
+
+8- yarn encore dev
+
+9- Connect into your localhost with the route "/admin" email: mailAdmin@gmail.com password: admin to log in the admin project
