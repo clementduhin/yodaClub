@@ -24,6 +24,8 @@ class AppFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
 
+        $faker = \Faker\Factory::create('fr_FR');
+
 
         $admin = new User;
 
@@ -40,13 +42,14 @@ class AppFixtures extends Fixture
 
         for($i=0; $i<=20; $i++) {
             $user = new User;
+            
 
-            $user->setEmail('joueur'.$i.'@gmail.com')
+            $user->setEmail($faker->freeEmail())
                 ->setPassword($this->passwordEncoder->encodePassword($user,'coucou'))
-                ->setFirstName('Prénom'.' '.$i)
-                ->setLastName('Nom'.' '.$i)
-                ->setPhone('0909090909')
-                ->setPoints( \rand(1, 378))
+                ->setFirstName($faker->firstName())
+                ->setLastName($faker->name())
+                ->setPhone($faker->phoneNumber())
+                ->setPoints( \rand(1, 500))
                 ->setValidation(false);
          $manager->persist($user);
         }
@@ -56,7 +59,8 @@ class AppFixtures extends Fixture
 
             $tournoi->setName('Tournois '.' '.$i)
                     ->setDate(new \DateTime( '2021-'.$i.'-15'))
-                    ->setLieu('Paris');
+                    ->setLieu($faker->city())
+                    ->setPlaceDispo( \rand(3, 40));
                 $manager->persist($tournoi);
         }
 

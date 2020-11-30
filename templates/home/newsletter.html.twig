@@ -1,0 +1,158 @@
+{% extends "@EasyAdmin/default/layout.html.twig" %}
+
+
+
+
+
+        {% block wrapper %}
+            <header class="main-header">
+                {% block header %}
+                    <nav class="navbar" role="navigation">
+                        <button id="navigation-toggler" type="button" aria-label="Toggle navigation">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+
+                        <div id="header-logo">
+                            {% block header_logo %}
+                                <a class="logo {{ easyadmin_config('site_name')|length > 14 ? 'logo-long' }}" title="{{ easyadmin_config('site_name')|striptags }}" href="{{ path('easyadmin') }}">
+                                    {{ easyadmin_config('site_name')|raw }}
+                                </a>
+                            {% endblock header_logo %}
+                        </div>
+                    </nav>
+
+                    {% set _user_name = easyadmin_read_property(app.user, easyadmin_config('user.name_property_path'))|default('user.unnamed'|trans(domain = 'EasyAdminBundle')) %}
+                    {% set _logout_path = easyadmin_logout_path() %}
+                    {% set _user_has_logout = _logout_path is not empty %}
+
+                    {% if constant('Symfony\\Component\\Security\\Core\\Authorization\\Voter\\AuthenticatedVoter::IS_IMPERSONATOR') is defined %}
+                        {% set _user_is_impersonated = is_granted('IS_IMPERSONATOR') %}
+                    {% else %}
+                        {% set _user_is_impersonated = is_granted('ROLE_PREVIOUS_ADMIN') %}
+                    {% endif %}
+
+                    {% set _user_menu_content %}
+                        <div class="popover-content-section user-details {{ _user_has_logout or _user_is_impersonated ? 'user-has-actions' }}">
+                            <p class="small text-muted mb-0">{{ 'user.logged_in_as'|trans(domain = 'EasyAdminBundle') }}</p>
+                            <p class="user-details-name">
+                                {% if app.user|default(false) == false %}
+                                    {{ 'user.anonymous'|trans(domain = 'EasyAdminBundle') }}
+                                {% else %}
+                                    {{ _user_name }}
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        {% block user_menu %}
+                            {% if _user_has_logout or _user_is_impersonated %}
+                                <div class="popover-content-section user-menu">
+                                    {% if _user_has_logout %}
+                                        <a class="user-action user-action-logout" href="{{ _logout_path }}">{{ 'user.signout'|trans(domain = 'EasyAdminBundle') }}</a>
+                                    {% endif %}
+                                    {% if _user_is_impersonated %}
+                                        <a class="user-action user-action-exit-impersonation" href="?_switch_user=_exit">{{ 'user.exit_impersonation'|trans(domain = 'EasyAdminBundle') }}</a>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endblock user_menu %}
+                    {% endset %}
+
+                    <div class="content-top navbar-custom-menu">
+                        {% block header_custom_menu %}
+                            <div class="user user-menu-wrapper {{ _user_is_impersonated ? 'user-is-impersonated' }}" data-toggle="popover" data-placement="bottom" data-container=".user-menu-wrapper" data-content="{{ _user_menu_content|e('html_attr') }}" data-html="true">
+                                {% if easyadmin_config('user.display_avatar') %}
+                                    {% set _avatar_image_path = easyadmin_read_property(app.user, easyadmin_config('user.avatar_property_path')) %}
+                                    {% if null == _avatar_image_path %}
+                                        <i class="fa fa-fw {{ app.user is not null ? 'fa-user-circle' : 'fa-user-times' }} user-avatar"></i>
+                                    {% else %}
+                                        <img class="user-avatar" src="{{ _avatar_image_path }}" />
+                                    {% endif %}
+                                {% endif %}
+                                {% if easyadmin_config('user.display_name') %}
+                                    <span class="user-name">{{ _user_name }}</span>
+                                {% endif %}
+                            </div>
+                        {% endblock header_custom_menu %}
+                    </div>
+                {% endblock header %}
+            </header>
+
+            <aside class="main-sidebar">
+            {% block sidebar %}
+                <section class="sidebar">
+                    {% block main_menu_wrapper %}
+                        {{ include([
+                            _entity_config is defined ? _entity_config.templates.menu,
+                            easyadmin_config('design.templates.menu'),
+                            '@EasyAdmin/default/menu.html.twig'
+                        ]) }}
+                    {% endblock main_menu_wrapper %}
+                </section>
+
+            {% endblock sidebar %}
+            </aside>
+
+            <div class="content-wrapper">
+                {% block flash_messages %}
+                    {{ include(_entity_config is defined ? _entity_config.templates.flash_messages : '@EasyAdmin/default/flash_messages.html.twig') }}
+                {% endblock flash_messages %}
+
+                <div id="sidebar-resizer-handler" class="resizer-handler resizer-handler-left"></div>
+
+                {% block content %}
+                    <div class="content">
+                        {% block content_header_wrapper %}
+                        {% set _has_content_help = _entity_config is defined and _entity_config[app.request.query.get('action')]['help']|default(false) %}
+                        <section class="content-header {{ _has_content_help ? 'has-content-help' }}">
+                            {% block content_header %}
+                                <div class="d-flex flex-row justify-content-between align-content-center w-100">
+                                    <div class="content-header-title">
+                                        <h1 class="title">{% block content_title %}Newsletter{% endblock %}</h1>
+                                    </div>
+
+                                    {% block global_actions_wrapper %}
+                                        <div class="global-actions">{% block global_actions %}{% endblock %}</div>
+                                    {% endblock %}
+                                </div>
+
+                                {% block content_help %}
+                                    {% if _entity_config is defined and _entity_config[app.request.query.get('action')]['help']|default(false) %}
+                                        <div class="content-header-help">
+                                            {{ _entity_config[app.request.query.get('action')]['help']|trans(domain = _entity_config.translation_domain)|raw }}
+                                        </div>
+                                    {% endif %}
+                                {% endblock content_help %}
+                            {% endblock content_header %}
+                        </section>
+                        {% endblock content_header_wrapper %}
+
+                        <section id="main" class="content-body">
+                            {% block main %}
+                                <div>
+                                
+                                    {{ form_start(form) }}
+                                        <div class="mt-3">
+                                            {{ form_widget(form.message, {attr: {'class': 'form-control', 'placeholder': 'Message'}}) }}
+                                        </div>
+
+                                    
+
+                                
+                                
+                                </div>
+                            {% endblock %}
+                        </section>
+
+                        {% block content_footer_wrapper %}
+                            <section class="content-footer d-flex justify-content-end">
+                                {% block content_footer %}{{ form_widget(form.Envoyer, {attr: {'class': 'btn btn-success'}}) }}{% endblock %}
+                                {{ form_end(form) }}
+                            </section>
+                        {% endblock %}
+                    </div>
+                {% endblock content %}
+
+                <div id="content-resizer-handler" class="resizer-handler resizer-handler-right"></div>
+            </div>
+        {% endblock wrapper %}
+

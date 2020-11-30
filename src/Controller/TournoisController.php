@@ -20,6 +20,8 @@ class TournoisController extends AbstractController
         $repoTournois = $this->getDoctrine()->getRepository(Tournois::class);
         $toutLesTournois = $repoTournois->findTournoisByDate();
 
+
+
         return $this->render('tournois/index.html.twig', [
             'tournois' => $toutLesTournois,
         ]);

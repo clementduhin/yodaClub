@@ -39,6 +39,11 @@ class Tournois
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $placeDispo;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -115,5 +120,17 @@ class Tournois
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getPlaceDispo(): ?int
+    {
+        return $this->placeDispo;
+    }
+
+    public function setPlaceDispo(int $placeDispo): self
+    {
+        $this->placeDispo = $placeDispo;
+
+        return $this;
     }
 }

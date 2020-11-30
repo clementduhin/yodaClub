@@ -6,6 +6,7 @@ use App\Entity\Mail;
 use App\Entity\News;
 use App\Entity\User;
 use App\Form\ContactFormType;
+use App\Form\NewsletterFormType;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -77,5 +78,38 @@ Message: {$mail->getMessage()}");
     public function skahinall(): Response
     {
         return $this->redirect('http://skahinall.com');
+   }
+
+
+    /**
+    * @Route("/admin/newsletter", name="newsletter")
+    */
+    public function newsletter(Request $request, MailerInterface $mailer): Response
+    {
+        $mail = new Mail;
+
+        $formNewsletter = $this->createForm(NewsletterFormType::class, $mail);
+        $formNewsletter->handleRequest($request); 
+
+        $repoUser = $this->getDoctrine()->getRepository(User::class);
+        $allUser = $repoUser->findAll();
+
+        
+        if($formNewsletter->isSubmitted() && $formNewsletter->isValid()){
+            foreach ($allUser as $value) {
+                $newsletter = (new Email())
+                 ->from("testyodaclub@gmail.com")
+                 ->to($value->getEmail())
+                 ->subject("Une nouveautée du yoda Club")
+                 ->text($mail->getMessage());
+
+             $mailer->send($newsletter); 
+            }
+
+            return $this->redirect('newsletter');
+        }
+        return $this->render('home/newsletter.html.twig', [
+            'form' => $formNewsletter->createView()
+        ]);
    }
 }

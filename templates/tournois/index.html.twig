@@ -11,6 +11,7 @@
                 <th scope="col">Heure</th>
                 <th scope="col">Lieu</th>
                 <th scope="col">Participation</th>
+                <th scope="col">Place</th>
             </tr>
         </thead>
         <tbody>
@@ -19,11 +20,24 @@
                 <td scope="col">{{ tournoi.date | date('d/m/Y') }} </td>
                 <td scope="col">{{ tournoi.date | date('H:i') }}</td>
                 <td scope="col">{{ tournoi.lieu }}</td>
-                <td scope="col"><a href=" {{ path('tournois') }}/{{ tournoi.id }}" class="btn btn-success">Participer</a></td>
+                    {% if tournoi.users | length == tournoi.placeDispo %}
+                        
+                        <td scope="col"><button class="btn btn-danger">Complet</button></td>
+
+                    {% else %}
+                        <td scope="col"><a href=" {{ path('tournois') }}/{{ tournoi.id }}" class="btn btn-success">Participer</a></td>
+                    
+                    {% endif %}
+                <td scope="col">{{ tournoi.users | length }} / {{ tournoi.placeDispo }}</td>
+
+        
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
+
+
 </div>
 
 {% endblock %}

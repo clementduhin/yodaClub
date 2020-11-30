@@ -7,9 +7,12 @@ easy_admin:
 
   design:
     menu:
+      - { label: 'Accueil YodaClub.fr', route: 'home', icon: 'home' }
       - { entity: 'User', label: 'Joueurs', icon: 'user' }
       - { entity: 'News', label: 'News', icon: 'newspaper' }
       - { entity: 'Tournois', label: 'Tournois', icon: 'gamepad' }
+      - { label: 'Newsletter', route: 'newsletter', icon: 'paper-plane' }
+
 
   formats:
     datetime: 'd/m/Y à H:i'
@@ -63,6 +66,7 @@ easy_admin:
           - date
           - lieu
           - { property: 'users', label: 'Nb. de joueurs' }
+          - placeDispo
 
       form:
         fields:
@@ -70,6 +74,7 @@ easy_admin:
           - date
           - lieu
           - { property: 'users', label: 'Joueurs' }
+          - placeDispo
 
 
       # list:
