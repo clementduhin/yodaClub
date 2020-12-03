@@ -3,7 +3,7 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container tableauTournois">
     <table class="table table-striped table-dark">
         <thead>
             <tr>
@@ -22,10 +22,10 @@
                 <td scope="col">{{ tournoi.lieu }}</td>
                     {% if tournoi.users | length == tournoi.placeDispo %}
                         
-                        <td scope="col"><button class="btn btn-danger">Complet</button></td>
+                        <td scope="col"><button class="btn btn-danger btnParticipation">Complet</button></td>
 
                     {% else %}
-                        <td scope="col"><a href=" {{ path('tournois') }}/{{ tournoi.id }}" class="btn btn-success">Participer</a></td>
+                        <td scope="col"><a href=" {{ path('tournois') }}/{{ tournoi.id }}" class="btn btn-success btnParticipation">Participer</a></td>
                     
                     {% endif %}
                 <td scope="col">{{ tournoi.users | length }} / {{ tournoi.placeDispo }}</td>

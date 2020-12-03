@@ -4,6 +4,10 @@
     display: none;
   }
 
+  .titleHeadContainer {
+    font-size: 2em;
+  }
+
   .mobileAbsolute {
     position: absolute;
     top: 90%;
@@ -12,21 +16,29 @@
   }
 
   .backTop {
-    font-size: 5em;
+    font-size: 3em;
+    right: 10%;
   }
 
   .maNav {
     // height: 50vh;
-    display: flex;
+    display: none;
     justify-content: center !important;
   }
 
   .news {
     flex-direction: row;
+    height: 60vh;
   }
 
   .containerNav {
     width: 100vw;
+    margin-top: 5%;
+    margin-bottom: 2em;
+  }
+
+  .tableauTournois {
+    font-size: .6em!important;
   }
 
   .backgroundCoupe {
@@ -41,6 +53,14 @@
     // max-width: 50%;
   }
 
+  .btnTournois {
+    width: 150px;
+  }
+
+  .btnParticipation {
+    font-size: .8em!important;
+  }
+
   .fa-jedi-order {
     font-size: 3em;
   }
@@ -48,6 +68,13 @@
   .contenuCard {
     flex-direction: column;
     align-items: center;
+    font-size: 1em;
+  }
+
+  .messageClassement {
+    margin-top: 5%;
+    font-size: .8em;
+    padding: 0.25rem .55rem!important;
   }
 
   .imgCard {

@@ -199,7 +199,9 @@ label {
 }
 
 .visible {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contenuCard {
@@ -208,6 +210,7 @@ label {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .policeStarWars {
