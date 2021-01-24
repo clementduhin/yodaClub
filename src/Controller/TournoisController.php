@@ -20,17 +20,15 @@ class TournoisController extends AbstractController
         $repoTournois = $this->getDoctrine()->getRepository(Tournois::class);
         $toutLesTournois = $repoTournois->findTournoisByDate();
 
-
-
         return $this->render('tournois/index.html.twig', [
             'tournois' => $toutLesTournois,
         ]);
     }
 
     /**
-    * @Route("/tournois/{id}", name="participation_tournoi")
-    * 
-    */
+     * @Route("/tournois/{id}", name="participation_tournoi")
+     * 
+     */
 
     public function participation($id, Request $request, ObjectManager $monManager): Response
     {
@@ -45,15 +43,15 @@ class TournoisController extends AbstractController
         $participation = false;
 
         $participants = $user->getTournois();
-        
-        foreach( $participants as $value){
 
-            if($value->id == $tournoisSelectionne->id){
+        foreach ($participants as $value) {
+
+            if ($value->id == $tournoisSelectionne->id) {
                 $participation = true;
             }
         }
 
-        if($participation){
+        if ($participation) {
 
             $message = "Vous participez déjà à ce tournoi";
 
@@ -61,15 +59,14 @@ class TournoisController extends AbstractController
                 'tournoi' => $tournoisSelectionne,
                 'message' => $message
             ]);
-
-        }else{
+        } else {
             $form = $this->createForm(ParticipationType::class);
-            $form->handleRequest($request); 
+            $form->handleRequest($request);
 
-            if($form->isSubmitted()){
+            if ($form->isSubmitted()) {
                 $tournoisSelectionne->addUser($user);
                 $monManager->flush();
-                $message = "Participation prise en compte."; 
+                $message = "Participation prise en compte.";
 
                 return $this->render('tournois/participationTournoi.html.twig', [
                     'tournoi' => $tournoisSelectionne,

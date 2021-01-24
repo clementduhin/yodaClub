@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Yoda Club{% endblock %}
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -11,12 +11,7 @@
     <div class="container containerHome" id="home">
         {% if is_granted('IS_AUTHENTICATED_FULLY') and  app.user.validation  == true %}
         
-            <h3 class="textHome">salut {{ app.user.firstname }}
-
-            
-            </h3>
-
-            
+            <h3 class="textHome">salut {{ app.user.firstname }}</h3>
 
         {% elseif is_granted('IS_AUTHENTICATED_FULLY') and app.user.validation  == false %}
 

@@ -26,7 +26,6 @@ class AppFixtures extends Fixture
 
         $faker = \Faker\Factory::create('fr_FR');
 
-
         $admin = new User;
 
         $admin->setEmail('mailAdmin@gmail.com')
@@ -47,7 +46,7 @@ class AppFixtures extends Fixture
             $user->setEmail($faker->freeEmail())
                 ->setPassword($this->passwordEncoder->encodePassword($user,'coucou'))
                 ->setFirstName($faker->firstName())
-                ->setLastName($faker->name())
+                ->setLastName($faker->lastName())
                 ->setPhone($faker->phoneNumber())
                 ->setPoints( \rand(1, 500))
                 ->setValidation(false);

@@ -29,12 +29,12 @@ class HomeController extends AbstractController
         $classementJoueur = $repoJoueurs->findClassement();
         $user = $this->getUser();
 
+
         $rank = 1;        
         if($user){
             $userId = $user->getId();
             foreach ($classementJoueur as $value) {
 
-                
                 if($userId == $value->id){
                     break;
                 }else{

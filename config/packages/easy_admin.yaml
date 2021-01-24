@@ -13,10 +13,8 @@ easy_admin:
       - { entity: 'Tournois', label: 'Tournois', icon: 'gamepad' }
       - { label: 'Newsletter', route: 'newsletter', icon: 'paper-plane' }
 
-
   formats:
     datetime: 'd/m/Y à H:i'
-
 
   entities:
     User:
@@ -89,8 +87,6 @@ easy_admin:
       #     - date 
       #     - lieu
           
-
-
 
 
 #    entities:
